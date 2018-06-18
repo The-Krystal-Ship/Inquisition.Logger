@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Heisenberg</Authors>
+    <Version>1.0.1</Version>
+    <PackageProjectUrl>https://github.com/The-Krystal-Ship/Inquisition.Logging</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/The-Krystal-Ship/Inquisition.Logging</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <Description>Simple logger library, very similar in style to ASP.Net Core's integrated ILogger&lt;T&gt;. Can be used with Dependency Injection.
+
+Feel free to drop by the repository in case of any issues or requests.</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
   </PropertyGroup>
 
 </Project>

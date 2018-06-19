@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Heisenberg</Authors>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <PackageProjectUrl>https://github.com/The-Krystal-Ship/Inquisition.Logging</PackageProjectUrl>
     <RepositoryUrl>https://github.com/The-Krystal-Ship/Inquisition.Logging</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
@@ -11,6 +11,9 @@
 
 Feel free to drop by the repository in case of any issues or requests.</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageReleaseNotes>Added more methods to ILogger&lt;T&gt; interface, and implemented them in the Logger&lt;T&gt; class.
+Added IServiceCollection extension method.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

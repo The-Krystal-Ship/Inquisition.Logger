@@ -1,69 +1,57 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace Inquisition.Logging
 {
     public class Logger<T> : ILogger<T> where T : class
     {
-        public void LogError(Exception e)
+        public void LogError(Exception e, [CallerLineNumber] int caller = 0)
         {
-            Log(ConsoleColor.Red, typeof(T).ToString(), null, e);
+            Log(ConsoleColor.Red, typeof(T).ToString(), null, e, caller);
         }
 
-        public void LogError(Exception e, string message)
+        public void LogError(Exception e, string message, [CallerLineNumber] int caller = 0)
         {
-            Log(ConsoleColor.Red, typeof(T).ToString(), message, e);
+            Log(ConsoleColor.Red, typeof(T).ToString(), message, e, caller);
         }
 
-        public void LogError(string source, string message)
+        public void LogError(string source, string message, [CallerLineNumber] int caller = 0)
         {
-            Log(ConsoleColor.Red, source, message);
+            Log(ConsoleColor.Red, source, message, null, caller);
         }
 
-        public void LogError(string message)
+        public void LogError(string message, [CallerLineNumber] int caller = 0)
         {
-            Log(ConsoleColor.Red, typeof(T).ToString(), message);
+            Log(ConsoleColor.Red, typeof(T).ToString(), message, null, caller);
         }
 
-        public void LogError(string source, string message, Exception e)
+        public void LogError(string source, string message, Exception e, [CallerLineNumber] int caller = 0)
         {
-            Log(ConsoleColor.Red, source, message, e);
+            Log(ConsoleColor.Red, source, message, e, caller);
         }
 
-        public void LogInformation(string message)
+        public void LogInformation(string message, [CallerLineNumber] int caller = 0)
         {
-            LogInformation(typeof(T).ToString(), message);
+            LogInformation(typeof(T).ToString(), message, caller);
         }
 
-        public void LogInformation(string source, string message)
+        public void LogInformation(string source, string message, [CallerLineNumber] int caller = 0)
         {
-            Log(ConsoleColor.Green, source, message);
+            Log(ConsoleColor.Green, source, message, null, caller);
         }
 
-        public void LogInformation(string source, string message, params object[] values)
-        {
-            Log(ConsoleColor.Green, source, message, null, values);
-        }
-
-        private void Log(ConsoleColor sourceForegroundColor, string source, string message, Exception e = null, params object[] values)
+        private void Log(ConsoleColor sourceForegroundColor, string source, string message, Exception e = null, int caller = 0)
         {
             WriteDate();
 
             if (source != null)
             {
-                WriteSource(sourceForegroundColor, source);
+                WriteSource(sourceForegroundColor, source, caller);
             }
 
             if (message != null)
             {
                 WriteMessage(message);
-            }
-
-            if (values.Length > 0)
-            {
-                foreach (object value in values)
-                {
-                    WriteMessage(value.ToString());
-                }
             }
 
             if (e != null)
@@ -80,10 +68,10 @@ namespace Inquisition.Logging
             Console.Write(date);
         }
 
-        private void WriteSource(ConsoleColor color, string source)
+        private void WriteSource(ConsoleColor color, string source, int caller)
         {
             Console.ForegroundColor = color;
-            Console.Write("    " + source);
+            Console.Write("    " + source + " line " + caller + ":");
             Console.WriteLine();
             Console.ResetColor();
         }

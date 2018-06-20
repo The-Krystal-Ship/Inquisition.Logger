@@ -1,3 +1,7 @@
+![NuGet](https://img.shields.io/nuget/dt/Inquisition.Logging.svg) ![NuGet](https://img.shields.io/nuget/v/Inquisition.Logging.svg)
+
+[NuGet package](https://www.nuget.org/packages/Inquisition.Logging)
+
 # Inquisition.Logging
 
 Simple logging library, very similar in style to ASP.Net Core's integrated `ILogger<T>`.

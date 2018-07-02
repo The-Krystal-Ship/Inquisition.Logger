@@ -1,5 +1,7 @@
 ![NuGet](https://img.shields.io/nuget/dt/Inquisition.Logging.svg) ![NuGet](https://img.shields.io/nuget/v/Inquisition.Logging.svg)
 
+Build: [![AppVeyor](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)](https://ci.appveyor.com/project/Flysenberg/inquisition-logging)
+
 [NuGet package](https://www.nuget.org/packages/Inquisition.Logging)
 
 # Inquisition.Logging

@@ -1,8 +1,8 @@
-![NuGet](https://img.shields.io/nuget/dt/Inquisition.Logging.svg) ![NuGet](https://img.shields.io/nuget/v/Inquisition.Logging.svg)
+![Downloads](https://img.shields.io/nuget/dt/Inquisition.Logging.svg)
+![Version](https://img.shields.io/nuget/v/Inquisition.Logging.svg)
+[![Build](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)](https://ci.appveyor.com/project/Flysenberg/inquisition-logging)
 
-Build: [![AppVeyor](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)](https://ci.appveyor.com/project/Flysenberg/inquisition-logging)
-
-[NuGet package](https://www.nuget.org/packages/Inquisition.Logging)
+[Manual NuGet package download](https://www.nuget.org/packages/Inquisition.Logging)
 
 # Inquisition.Logging
 
@@ -39,3 +39,13 @@ You can also go wild and make your own implementation of `ILogger<T>`.
 If you do and feel like sharing it, feel free to send a pull request!
 
 }
+
+### Output
+
+#### Compact view
+
+![CompactView](https://raw.githubusercontent.com/The-Krystal-Ship/Inquisition.Logging/master/Inquisition.Logging/Assets/compact.PNG)
+
+#### Default view
+
+![Default view](https://raw.githubusercontent.com/The-Krystal-Ship/Inquisition.Logging/master/Inquisition.Logging/Assets/default.PNG)

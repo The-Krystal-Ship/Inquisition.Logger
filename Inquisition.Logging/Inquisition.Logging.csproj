@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Heisenberg</Authors>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <PackageProjectUrl>https://github.com/The-Krystal-Ship/Inquisition.Logging</PackageProjectUrl>
     <RepositoryUrl>https://github.com/The-Krystal-Ship/Inquisition.Logging</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
@@ -12,7 +12,7 @@
 Feel free to drop by the repository in case of any issues or requests.</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>Added CallerLineNumber on output.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added lock around the log method</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

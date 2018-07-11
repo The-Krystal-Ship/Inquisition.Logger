@@ -8,6 +8,7 @@ namespace Inquisition.Logging
     {
         private readonly LoggerStyle _style;
         private readonly string _dateFormat;
+        private static object _lock = new object();
 
         public Logger() : this(LoggerStyle.Compact)
         {
@@ -66,25 +67,28 @@ namespace Inquisition.Logging
         
         private void Log(ConsoleColor sourceForegroundColor, string source, string message, Exception e = null, int caller = 0)
         {
-            WriteDate();
-            WriteCaller(caller);
-
-            if (source != null)
+            lock (_lock)
             {
-                WriteSource(sourceForegroundColor, source);
-            }
+                WriteDate();
+                WriteCaller(caller);
 
-            if (message != null)
-            {
-                WriteMessage(message);
-            }
+                if (source != null)
+                {
+                    WriteSource(sourceForegroundColor, source);
+                }
 
-            if (e != null)
-            {
-                WriteException(e);
-            }
+                if (message != null)
+                {
+                    WriteMessage(message);
+                }
 
-            Console.WriteLine();
+                if (e != null)
+                {
+                    WriteException(e);
+                }
+
+                Console.WriteLine();
+            }
         }
 
         private void Surround(ConsoleColor color, string content)

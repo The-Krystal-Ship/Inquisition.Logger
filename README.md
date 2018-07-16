@@ -68,8 +68,8 @@ Format: `[DateTime] [LineNumber] Type - Message`
 
 #### LoggerStyle.Compact
 
-![CompactView](https://raw.githubusercontent.com/The-Krystal-Ship/Inquisition.Logging/master/Inquisition.Logging/Assets/compact.PNG)
+![CompactView](https://raw.githubusercontent.com/TheKrystalShip/Logging/master/Logging/Assets/compact.PNG)
 
 #### LoggerStyle.Default
 
-![Default view](https://raw.githubusercontent.com/The-Krystal-Ship/Inquisition.Logging/master/Inquisition.Logging/Assets/default.PNG)
+![Default view](https://raw.githubusercontent.com/TheKrystalShip/Logging/master/Logging/Assets/default.PNG)

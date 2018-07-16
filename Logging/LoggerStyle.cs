@@ -1,4 +1,4 @@
-﻿namespace Inquisition.Logging
+﻿namespace TheKrystalShip.Logging
 {
     public enum LoggerStyle
     {

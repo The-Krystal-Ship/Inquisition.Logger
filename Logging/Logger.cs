@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace Inquisition.Logging
+namespace TheKrystalShip.Logging
 {
     public class Logger<T> : ILogger<T> where T : class
     {

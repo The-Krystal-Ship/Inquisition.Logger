@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace Inquisition.Logging
+namespace TheKrystalShip.Logging
 {
     public interface ILogger<T>
     {

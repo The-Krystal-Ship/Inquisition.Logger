@@ -40,7 +40,7 @@ using TheKrystalShip.Logging.Extensions
 // ...
 
 services = new ServiceCollection()
-    .AddLogging()
+    .AddLogger()
     .BuildServiceProvider();
 ```
 

@@ -8,7 +8,7 @@ namespace TheKrystalShip.Logging
     {
         private readonly LoggerStyle _style;
         private readonly string _dateFormat;
-        private static object _lock = new object();
+        private readonly object _lock;
 
         public Logger() : this(LoggerStyle.Compact)
         {
@@ -18,6 +18,7 @@ namespace TheKrystalShip.Logging
         public Logger(LoggerStyle loggerStyle)
         {
             _style = loggerStyle;
+            _lock = new object();
 
             switch (_style)
             {

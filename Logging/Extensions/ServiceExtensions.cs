@@ -5,7 +5,7 @@ namespace TheKrystalShip.Logging.Extensions
 {
     public static class ServiceExtensions
     {
-        public static IServiceCollection AddLogging(this IServiceCollection services)
+        public static IServiceCollection AddLogger(this IServiceCollection services)
         {
             services.TryAdd(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(Logger<>)));
             return services;

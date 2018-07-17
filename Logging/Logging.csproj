@@ -3,16 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Heisenberg</Authors>
-    <Version>1.0.6</Version>
+    <Version>1.0.6.1</Version>
     <PackageProjectUrl>https://github.com/TheKrystalShip/Logging</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TheKrystalShip/Logging</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
-    <Description>Simple logger library, very similar in style to ASP.Net Core's integrated ILogger&lt;T&gt;. Can be used with Dependency Injection.
-
-Feel free to drop by the repository in case of any issues or requests.</Description>
+    <Description>Console logging library</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>Changed owner to Organization</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated extensions that caused conflict with Microsoft's already existing method.</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>TheKrystalShip.Logging</RootNamespace>
     <AssemblyName>TheKrystalShip.Logging</AssemblyName>

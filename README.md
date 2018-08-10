@@ -1,5 +1,5 @@
-![Downloads](https://img.shields.io/nuget/dt/Inquisition.Logging.svg)
-![Version](https://img.shields.io/nuget/v/Inquisition.Logging.svg)
+![Downloads](https://img.shields.io/nuget/dt/TheKrystalShip.Logging.svg)
+![Version](https://img.shields.io/nuget/v/TheKrystalShip.Logging.svg)
 [![Build](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)](https://ci.appveyor.com/project/Flysenberg/inquisition-logging)
 
 [Manual NuGet package download](https://www.nuget.org/packages/Inquisition.Logging)

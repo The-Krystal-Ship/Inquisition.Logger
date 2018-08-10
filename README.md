@@ -1,10 +1,10 @@
-![Downloads](https://img.shields.io/nuget/dt/TheKrystalShip.Logging.svg)
-![Version](https://img.shields.io/nuget/v/TheKrystalShip.Logging.svg)
-[![Build](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)](https://ci.appveyor.com/project/Flysenberg/inquisition-logging)
+# TheKrystalShip.Logging
+
+| Downloads | Version | Build Status |
+| --- | --- | --- |
+| ![Downloads](https://img.shields.io/nuget/dt/TheKrystalShip.Logging.svg) | ![Version](https://img.shields.io/nuget/v/TheKrystalShip.Logging.svg) | [![Build](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)](https://ci.appveyor.com/project/Flysenberg/inquisition-logging) |
 
 [Manual NuGet package download](https://www.nuget.org/packages/Inquisition.Logging)
-
-# TheKrystalShip.Logging
 
 ## Setup
 

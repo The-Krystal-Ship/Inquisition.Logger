@@ -1,210 +1,48 @@
-﻿using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using Microsoft.Extensions.Logging;
+
+using System;
 
 namespace TheKrystalShip.Logging
 {
-    public class Logger<T> : ILogger<T> where T : class
+    public class Logger : ILogger
     {
-        private readonly LoggerStyle _style;
-        private readonly string _dateFormat;
-        private readonly object _lock;
+        private static readonly object _lock = new object();
+        private readonly string _name;
+        private readonly LoggerConfiguration _config;
 
-        public Logger() : this(LoggerStyle.Compact)
+        public Logger(string name, LoggerConfiguration config)
         {
-
+            _name = name;
+            _config = config;
         }
 
-        public Logger(LoggerStyle loggerStyle)
+        public IDisposable BeginScope<TState>(TState state)
         {
-            _style = loggerStyle;
-            _lock = new object();
+            return null;
+        }
 
-            switch (_style)
+        public bool IsEnabled(LogLevel logLevel)
+        {
+            return logLevel == _config.LogLevel;
+        }
+
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        {
+            if (!IsEnabled(logLevel))
             {
-                case LoggerStyle.Compact:
-                    _dateFormat = "hh\\:mm\\:ss tt";
-                    break;
-                default:
-                    _dateFormat = "dd/MM/yyyy hh\\:mm\\:ss tt";
-                    break;
+                return;
             }
-        }
 
-        public void LogError(Exception e, [CallerLineNumber] int caller = 0)
-        {
-            Log(ConsoleColor.Red, typeof(T).ToString(), null, e, caller);
-        }
-
-        public void LogError(Exception e, string message, [CallerLineNumber] int caller = 0)
-        {
-            Log(ConsoleColor.Red, typeof(T).ToString(), message, e, caller);
-        }
-
-        public void LogError(string source, string message, [CallerLineNumber] int caller = 0)
-        {
-            Log(ConsoleColor.Red, source, message, null, caller);
-        }
-
-        public void LogError(string message, [CallerLineNumber] int caller = 0)
-        {
-            Log(ConsoleColor.Red, typeof(T).ToString(), message, null, caller);
-        }
-
-        public void LogError(string source, string message, Exception e, [CallerLineNumber] int caller = 0)
-        {
-            Log(ConsoleColor.Red, source, message, e, caller);
-        }
-
-        public void LogInformation(string message, [CallerLineNumber] int caller = 0)
-        {
-            LogInformation(typeof(T).ToString(), message, caller);
-        }
-
-        public void LogInformation(string source, string message, [CallerLineNumber] int caller = 0)
-        {
-            Log(ConsoleColor.DarkGreen, source, message, null, caller);
-        }
-        
-        private void Log(ConsoleColor sourceForegroundColor, string source, string message, Exception e = null, int caller = 0)
-        {
             lock (_lock)
             {
-                WriteDate();
-                WriteCaller(caller);
-
-                if (source != null)
+                if (_config.EventId == 0 || _config.EventId == eventId.Id)
                 {
-                    WriteSource(sourceForegroundColor, source);
-                }
-
-                if (message != null)
-                {
-                    WriteMessage(message);
-                }
-
-                if (e != null)
-                {
-                    WriteException(e);
-                }
-
-                Console.WriteLine();
-            }
-        }
-
-        private void Surround(ConsoleColor color, string content)
-        {
-            ConsoleColor currentColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("[");
-            Console.ForegroundColor = color;
-            Console.Write(content);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("] ");
-            Console.ForegroundColor = currentColor;
-        }
-
-        private void WriteDate()
-        {
-            string date = DateTime.Now.ToString(_dateFormat);
-            Surround(ConsoleColor.Blue, date);
-        }
-        private void WriteCaller(int caller)
-        {
-            Surround(ConsoleColor.White, caller.ToString("D3"));
-        }
-        private void WriteSource(ConsoleColor color, string source)
-        {
-            switch (_style)
-            {
-                case LoggerStyle.Compact:
+                    ConsoleColor color = Console.ForegroundColor;
+                    Console.ForegroundColor = _config.Color;
+                    Console.WriteLine($"{logLevel.ToString()} - {eventId.Id} - {_name} - {formatter(state, exception)}");
                     Console.ForegroundColor = color;
-                    Console.Write(source.Split('.').Last());
-                    Console.ResetColor();
-                    Console.Write(" - ");
-                    break;
-                default:
-                    Console.ForegroundColor = color;
-                    Console.Write(source);
-                    Console.ResetColor();
-                    Console.WriteLine();
-                    break;
+                }
             }
-        }
-        private void WriteMessage(string message)
-        {
-            switch (_style)
-            {
-                case LoggerStyle.Compact:
-                    Console.Write(message);
-                    break;
-                default:
-                    Console.WriteLine("    " + message);
-                    break;
-            }
-        }
-        private void WriteException(Exception e)
-        {
-            switch (_style)
-            {
-                case LoggerStyle.Compact:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine(e.GetType().FullName);
-
-                    if (e.Source != null)
-                    {
-                        WriteExceptionProperty(nameof(e.Source), e.Source);
-                    }
-
-                    if (e.Message != null)
-                    {
-                        WriteExceptionProperty(nameof(e.Message), e.Message);
-                    }
-
-                    if (e.StackTrace != null)
-                    {
-                        WriteExceptionProperty(nameof(e.StackTrace), e.StackTrace);
-                    }
-
-                    break;
-                default:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.Write("    " + e.GetType().FullName);
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(": ");
-
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-
-                    if (e.Source != null)
-                    {
-                        WriteExceptionProperty(nameof(e.Source), e.Source, true);
-                    }
-
-                    if (e.Message != null)
-                    {
-                        WriteExceptionProperty(nameof(e.Message), e.Message, true);
-                    }
-
-                    if (e.StackTrace != null)
-                    {
-                        WriteExceptionProperty(nameof(e.StackTrace), e.StackTrace, true);
-                    }
-                    break;
-            }
-
-            Console.ResetColor();
-        }
-        
-        private void WriteExceptionProperty(string source, string content, bool spacing = true)
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-
-            if (spacing)
-                Console.Write("    ");
-
-            Console.Write($"{source}: ");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(content.Trim().Replace(Environment.NewLine, " "));
         }
     }
 }
